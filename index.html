@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Make Tixtoks to Escape School</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        h1 {
+            color: #ffffff;
+            font-size: 32px;
+            margin-top: 20px;
+        }
+        
+        #phone {
+            width: 300px;
+            height: 600px;
+            background-color: #ededed;
+            margin: 0 auto;
+            margin-top: 50px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        #battery {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+            color: #000000;
+            background-color: #ffffff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            z-index: 2;
+        }
+        
+        #message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #000000;
+            font-size: 24px;
+            z-index: 1;
+        }
+        
+        #phone video {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+        
+        #tiktok-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #ee1d52;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+        
+        #charger-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #24c9a1;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+        
+        #stats {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            text-align: left;
+            font-size: 18px;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Make Tixtoks to Escape School</h1>
+    <div id="phone">
+        <div id="battery">Battery: <span id="battery-level">100%</span></div>
+        <div id="message"></div>
+        <video id="phone-video" controls></video>
+    </div>
+    <button id="tiktok-button">Make a Tixtok</button>
+    <button id="charger-button">Charge Phone</button>
+    <div id="stats">
+        <p>Followers: <span id="followers">0</span></p>
+        <p>Likes: <span id="likes">0</span></p>
+    </div>
+
+    <script>
+        var batteryLevel = 100;
+        var followers = 0;
+        var likes = 0;
+        var videos = ["1.mp4", "2.mp4", "3.mp4", "4.mp4"];
+
+        // Function to update the battery level
+        function updateBatteryLevel() {
+            var batteryElement = document.getElementById("battery-level");
+            batteryElement.textContent = batteryLevel + "%";
+        }
+
+        // Function to update the phone message and display a random video
+        function updatePhoneMessage(message) {
+            var messageElement = document.getElementById("message");
+            messageElement.textContent = message;
+
+            var videoElement = document.getElementById("phone-video");
+            videoElement.src = videos[Math.floor(Math.random() * videos.length)];
+            videoElement.autoplay = true;
+            videoElement.loop = true;
+        }
+
+        // Function to update the followers and likes counters
+        function updateStats() {
+            var followersElement = document.getElementById("followers");
+            followers += Math.floor(Math.random() * 10) + 1;
+            followersElement.textContent = followers;
+
+            var likesElement = document.getElementById("likes");
+            likes += Math.floor(Math.random() * 17) + 4;
+            likesElement.textContent = likes;
+        }
+
+        // Function to simulate making a Tixtok
+        function makeTixtok() {
+            if (batteryLevel >= 10) {
+                batteryLevel -= 10;
+                updateBatteryLevel();
+                updateStats();
+                updatePhoneMessage("Tixtok created!");
+            } else {
+                updatePhoneMessage("Low Battery! Charge your phone.");
+            }
+        }
+
+        // Function to simulate charging the phone
+        function chargePhone() {
+            if (batteryLevel < 100) {
+                batteryLevel += 10;
+                if (batteryLevel > 100) {
+                    batteryLevel = 100;
+                }
+                updateBatteryLevel();
+            } else {
+                updatePhoneMessage("Battery is already full!");
+            }
+        }
+
+        // Event listener for the tiktok button
+        var tiktokButton = document.getElementById("tiktok-button");
+        tiktokButton.addEventListener("click", function() {
+            makeTixtok();
+        });
+
+        // Event listener for the charger button
+        var chargerButton = document.getElementById("charger-button");
+        chargerButton.addEventListener("click", function() {
+            chargePhone();
+        });
+
+    </script>
+</body>
+</html>
