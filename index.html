@@ -51,7 +51,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             color: #000000;
-            font-size: 24px;
+            font-size: 40px;
             z-index: 1;
         }
         
@@ -90,6 +90,23 @@
             text-align: left;
             font-size: 18px;
             color: #ffffff;
+        }
+        
+        /* Media query for phone users */
+        @media (max-width: 600px) {
+            body {
+                align-items: flex-start;
+            }
+            
+            #phone {
+                margin-top: 20px;
+            }
+            
+            #stats {
+                top: 20px;
+                left: calc(50% + 180px);
+                text-align: right;
+            }
         }
     </style>
 </head>
